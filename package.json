@@ -1,10 +1,13 @@
 {
-  "name": "fails-components-config",
-  "version": "0.0.1",
+  "name": "@martenrichter/fails-components-config",
+  "version": "0.0.0",
   "description": "Supplies config classes for use within the fails ecosystem",
   "author": "Marten Richter",
   "license": "AGPL-3.0-or-later",
-  "repository": "martenrichter/fails-components-config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martenrichter/fails-components-config.git"
+  },
   "main": "dist/config.js",
   "module": "dist/config.modern.js",
   "source": "src/config.js",
@@ -12,10 +15,10 @@
     "node": ">=14"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "build": "microbundle --no-compress --format modern,cjs",
+    "start": "microbundle watch --no-compress --format modern,cjs",
     "prepublish": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
+    "test": "run-s  test:lint test:build",
     "test:build": "run-s build",
     "test:lint": "eslint ."
   },
@@ -32,7 +35,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.1.0",
     "gh-pages": "^3.1.0",
-    "microbundle-crl": "^0.13.11",
+    "microbundle": "^0.13.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1"
   },
@@ -44,5 +47,8 @@
     "jsonwebtoken": "^8.5.1",
     "redlock": "^4.2.0",
     "url-signer": "^0.1.4"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
