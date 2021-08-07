@@ -28,6 +28,20 @@ export class FailsConfig {
       // string with all modules in debug mode
       this.devmode = process.env.FAILS_LOCAL.split(' ')
     }
+    if (process.env.REDIS_HOST) {
+      // string with all modules in debug mode
+      this.redishost = process.env.REDIS_HOST
+    } else {
+      this.redishost = '127.0.0.1' // local host is the default
+    }
+
+    if (process.env.REDIS_PORT) {
+      // string with all modules in debug mode
+      this.redisport = process.env.REDIS_PORT
+    } else {
+      this.redisport = 6379 // default redisport
+    }
+
     if (process.env.REACT_APP_FAILS_LOCAL) {
       // string with all modules in debug mode
       this.devmode = process.env.REACT_APP_FAILS_LOCAL.split(' ')
@@ -37,7 +51,7 @@ export class FailsConfig {
     if (process.env.FAILS_DEV_IPHOST) {
       this.host = process.env.FAILS_DEV_IPHOST
     } else {
-      this.host = 'localhost'
+      this.host = '0.0.0.0'
     }
 
     if (process.env.FAILS_EXTERNAL_HOST) {
@@ -97,6 +111,14 @@ export class FailsConfig {
         this.lms_list[name] = newone
       }
     }
+  }
+
+  redisHost() {
+    return this.redishost
+  }
+
+  redisPort() {
+    return this.redisport
   }
 
   needCors() {
@@ -215,7 +237,7 @@ export class FailsConfig {
         this.getSPath(type)
       )
     } else {
-      return this.getPath(type) // relative url
+      return '/' + this.getPath(type) // absolute url without domain
     }
   }
 }
