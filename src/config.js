@@ -32,8 +32,8 @@ export class FailsConfig {
       // string with all modules in debug mode
       this.devmode = process.env.REACT_APP_FAILS_LOCAL.split(' ')
     }
-    console.log('dev mode', this.devmode)
-    console.log('process env', process.env)
+    // console.log('dev mode', this.devmode)
+    // console.log('process env', process.env)
     if (process.env.FAILS_DEV_IPHOST) {
       this.host = process.env.FAILS_DEV_IPHOST
     } else {
@@ -78,16 +78,14 @@ export class FailsConfig {
       const lmss = process.env.FAILS_LMS_LIST.split(' ')
       for (let i = 0; i < lmss.length; i++) {
         const lms = lmss[i]
+        const lmsarr = lms.split('|')
+        if (lmsarr.length !== 5) throw new Error('FAILS_LMS_LIST wrong format')
         const newone = {}
-        newone.keyset_url =
-          process.env['FAILS_LMS_' + lms.toUpperCase() + '_KEYSET_URL']
-        newone.access_token_url =
-          process.env[
-            'FAILS_LMS_' + lms.toUpperCase() + '_KEYSET_ACCESS_TOKEN_URL'
-          ]
-        newone.auth_request_url =
-          process.env['FAILS_LMS_' + lms.toUpperCase() + '_AUTH_REQUEST_URL']
-        const name = process.env['FAILS_LMS_' + lms.toUpperCase() + '_NAME']
+        newone.keyset_url = lmsarr[1]
+        newone.access_token_url = lmsarr[2]
+
+        newone.auth_request_url = lmsarr[3]
+        const name = lmsarr[4]
         if (
           !newone.keyset_url ||
           !newone.access_token_url ||
