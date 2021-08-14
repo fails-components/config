@@ -173,9 +173,9 @@ export class FailsConfig {
       web: 'static/lecture',
       app: 'app',
       appweb: 'static/app',
-      notepad: 'notepads',
-      screen: 'screens',
-      notes: 'notes',
+      notepad: '',
+      screen: '',
+      notes: '',
       lti: 'lti',
       data: ''
     }
