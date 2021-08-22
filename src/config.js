@@ -111,6 +111,14 @@ export class FailsConfig {
         this.lms_list[name] = newone
       }
     }
+
+    if (process.env.FAILS_LMS_COURSE_WHITELIST) {
+      this.courseidWhitelist = process.env.FAILS_LMS_COURSE_WHITELIST.split(' ')
+    }
+  }
+
+  courseWhitelist() {
+    return this.courseidWhitelist
   }
 
   redisHost() {
