@@ -178,9 +178,9 @@ export class FailsConfig {
 
   getPath(type) {
     const paths = {
-      web: 'static/lecture',
+      web: 'static/lecture/',
       app: 'app',
-      appweb: 'static/app',
+      appweb: 'static/app/',
       notepad: '',
       screen: '',
       notes: '',
