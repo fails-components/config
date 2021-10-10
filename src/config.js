@@ -42,6 +42,11 @@ export class FailsConfig {
       this.redisport = 6379 // default redisport
     }
 
+    if (process.env.REDIS_PASS) {
+      // string with all modules in debug mode
+      this.redispass = process.env.REDIS_PASS
+    }
+
     if (process.env.REACT_APP_FAILS_LOCAL) {
       // string with all modules in debug mode
       this.devmode = process.env.REACT_APP_FAILS_LOCAL.split(' ')
@@ -127,6 +132,10 @@ export class FailsConfig {
 
   redisPort() {
     return this.redisport
+  }
+
+  redisPass() {
+    return this.redispass
   }
 
   needCors() {
