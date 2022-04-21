@@ -43,10 +43,6 @@
     "dist"
   ],
   "dependencies": {
-    "express-jwt": "^6.1.0",
-    "jsonwebtoken": "^8.5.1",
-    "redlock": "^4.2.0",
-    "url-signer": "^0.1.4"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
