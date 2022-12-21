@@ -153,7 +153,8 @@ export class FailsConfig {
       screen: 9090,
       lti: 9091,
       notes: 9093,
-      data: 9092
+      data: 9092,
+      avsdispatcher: 9093
     }
   }
 
@@ -194,9 +195,10 @@ export class FailsConfig {
       screen: '',
       notes: '',
       lti: 'lti',
-      data: ''
+      data: '',
+      avsdispatcher: 'avs'
     }
-    if (this.devmode && !(type === 'lti')) return ''
+    if (this.devmode && !(type === 'lti' || type === 'avsdispatcher')) return ''
 
     if (paths[type]) {
       return paths[type]
