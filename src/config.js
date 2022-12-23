@@ -87,6 +87,7 @@ export class FailsConfig {
       sw.container = process.env.FAILS_SWIFT_CONTAINER
       sw.key = process.env.FAILS_SWIFT_KEY
       sw.baseurl = process.env.FAILS_SWIFT_BASEURL
+      sw.authbaseurl = process.env.FAILS_SWIFT_AUTH_BASEURL
       sw.username = process.env.FAILS_SWIFT_USERNAME
       sw.password = process.env.FAILS_SWIFT_PASSWORD
       sw.domain = process.env.FAILS_SWIFT_DOMAIN
