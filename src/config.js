@@ -77,6 +77,22 @@ export class FailsConfig {
       this.statsavetype = 'fs'
     }
 
+    if (
+      process.env.FAILS_STATIC_WEBSERV_TYPE === 'openstackswift' ||
+      process.env.FAILS_STATIC_SAVE_TYPE === 'openstackswift'
+    ) {
+      this.swift = {}
+      const sw = this.swift
+      sw.account = process.env.FAILS_SWIFT_ACCOUNT
+      sw.container = process.env.FAILS_SWIFT_CONTAINER
+      sw.key = process.env.FAILS_SWIFT_KEY
+      sw.baseurl = process.env.FAILS_SWIFT_BASEURL
+      sw.username = process.env.FAILS_SWIFT_USERNAME
+      sw.password = process.env.FAILS_SWIFT_PASSWORD
+      sw.domain = process.env.FAILS_SWIFT_DOMAIN
+      sw.project = process.env.FAILS_SWIFT_PROJECT
+    }
+
     if (process.env.FAILS_MONGO_URL) this.mongourl = process.env.FAILS_MONGO_URL
     else this.mongourl = 'mongodb://localhost:27017'
 
@@ -239,6 +255,10 @@ export class FailsConfig {
       if (this.devPorts()[type]) return this.devPorts()[type]
     }
     return 443 // https
+  }
+
+  getSwift() {
+    return this.swift
   }
 
   isHttps(port) {
