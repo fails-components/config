@@ -8,18 +8,15 @@
     "type": "git",
     "url": "git+https://github.com/fails-components/config.git"
   },
-  "main": "dist/config.js",
-  "module": "dist/config.modern.js",
+  "main": "src/config.js",
+  "module": "src/config.js",
   "source": "src/config.js",
+  "type": "module",
   "engines": {
     "node": ">=16"
   },
   "scripts": {
-    "build": "microbundle --no-compress --format modern,cjs",
-    "start": "microbundle watch --no-compress --format modern,cjs",
-    "prepublish": "run-s build",
-    "test": "run-s  test:lint test:build",
-    "test:build": "run-s build",
+    "test": "run-s  test:lint",
     "test:lint": "eslint ."
   },
   "devDependencies": {
