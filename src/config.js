@@ -94,6 +94,20 @@ export class FailsConfig {
       sw.project = process.env.FAILS_SWIFT_PROJECT
     }
 
+    if (
+      process.env.FAILS_STATIC_WEBSERV_TYPE === 's3' ||
+      process.env.FAILS_STATIC_SAVE_TYPE === 's3'
+    ) {
+      this.s3 = {}
+      const s3 = this.s3
+      s3.AK = process.env.FAILS_S3_AK
+      s3.SK = process.env.FAILS_S3_SK
+      s3.region = process.env.FAILS_S3_REGION
+      s3.bucket = process.env.FAILS_S3_BUCKET
+      s3.host = process.env.FAILS_S3_HOST
+      s3.alturl = process.env.FAILS_S3_ALTURL
+    }
+
     if (process.env.FAILS_MONGO_URL) this.mongourl = process.env.FAILS_MONGO_URL
     else this.mongourl = 'mongodb://localhost:27017'
 
@@ -260,6 +274,10 @@ export class FailsConfig {
 
   getSwift() {
     return this.swift
+  }
+
+  getS3() {
+    return this.s3
   }
 
   isHttps(port) {
