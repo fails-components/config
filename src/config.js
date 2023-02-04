@@ -217,7 +217,7 @@ export class FailsConfig {
     return this.staticsecret
   }
 
-  getPath(type) {
+  getPath(type, branch) {
     const paths = {
       web: 'static/lecture/',
       app: 'app',
@@ -231,9 +231,16 @@ export class FailsConfig {
     }
     if (this.devmode && !(type === 'lti' || type === 'avsdispatcher')) return ''
 
+    let toret
     if (paths[type]) {
-      return paths[type]
-    } else return ''
+      toret = paths[type]
+    } else toret = ''
+
+    if (branch && branch !== 'stable') {
+      toret = toret.replace('static/', 'static/' + branch + '/')
+    }
+
+    return toret
   }
 
   getHost() {
@@ -244,10 +251,10 @@ export class FailsConfig {
     return this.exthost
   }
 
-  getSPath(type) {
-    const path = this.getPath(type)
+  getSPath(type, branch) {
+    const path = this.getPath(type, branch)
     if (path === '') return ''
-    else return '/' + this.getPath(type)
+    else return '/' + this.getPath(type, branch)
   }
 
   getDataDir() {
@@ -284,7 +291,7 @@ export class FailsConfig {
     return port === 443
   }
 
-  getURL(type) {
+  getURL(type, branch) {
     const port = this.getPort(type)
     const ishttps = this.isHttps(port)
     if (this.devmode && this.devmode.includes(type)) {
@@ -292,10 +299,10 @@ export class FailsConfig {
         (ishttps ? 'https://' : 'http://') +
         this.host +
         (port === 443 ? '' : ':' + port) +
-        this.getSPath(type)
+        this.getSPath(type, branch)
       )
     } else {
-      return '/' + this.getPath(type) // absolute url without domain
+      return '/' + this.getPath(type, branch) // absolute url without domain
     }
   }
 }
