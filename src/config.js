@@ -151,6 +151,16 @@ export class FailsConfig {
     if (process.env.FAILS_LMS_COURSE_WHITELIST) {
       this.courseidWhitelist = process.env.FAILS_LMS_COURSE_WHITELIST.split(' ')
     }
+
+    if (process.env.FAILS_ONLY_LEARNERS === '1') {
+      this.onlylearners = true
+    } else {
+      this.onlylearners = false
+    }
+  }
+
+  onlyLearners() {
+    return this.onlylearners
   }
 
   courseWhitelist() {
