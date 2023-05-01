@@ -21,111 +21,113 @@ export class FailsConfig {
   constructor(args) {
     if (args && args.react) this.react = true
 
-    if (process.env.NODE_ENV === 'development') {
+    let env
+    if (process?.env) env = process.env
+    else if (import.meta?.env) env = import.meta.env
+    this.env = env
+
+    if (env.NODE_ENV === 'development') {
       this.development = true
     }
-    if (process.env.FAILS_LOCAL) {
+    if (env.FAILS_LOCAL) {
       // string with all modules in debug mode
-      this.devmode = process.env.FAILS_LOCAL.split(' ')
+      this.devmode = env.FAILS_LOCAL.split(' ')
     }
-    if (process.env.REDIS_HOST) {
+    if (env.REDIS_HOST) {
       // string with all modules in debug mode
-      this.redishost = process.env.REDIS_HOST
+      this.redishost = env.REDIS_HOST
     } else {
       this.redishost = '127.0.0.1' // local host is the default
     }
 
-    if (process.env.REDIS_PORT) {
+    if (env.REDIS_PORT) {
       // string with all modules in debug mode
-      this.redisport = process.env.REDIS_PORT
+      this.redisport = env.REDIS_PORT
     } else {
       this.redisport = 6379 // default redisport
     }
 
-    if (process.env.REDIS_PASS) {
+    if (env.REDIS_PASS) {
       // string with all modules in debug mode
-      this.redispass = process.env.REDIS_PASS
+      this.redispass = env.REDIS_PASS
     }
 
-    if (process.env.REACT_APP_FAILS_LOCAL) {
+    if (env.REACT_APP_FAILS_LOCAL) {
       // string with all modules in debug mode
-      this.devmode = process.env.REACT_APP_FAILS_LOCAL.split(' ')
+      this.devmode = env.REACT_APP_FAILS_LOCAL.split(' ')
     }
     // console.log('dev mode', this.devmode)
-    // console.log('process env', process.env)
-    if (process.env.FAILS_DEV_IPHOST) {
-      this.host = process.env.FAILS_DEV_IPHOST
+    // console.log('process env', env)
+    if (env.FAILS_DEV_IPHOST) {
+      this.host = env.FAILS_DEV_IPHOST
     } else {
       this.host = '0.0.0.0'
     }
 
-    if (process.env.FAILS_EXTERNAL_HOST) {
-      this.exthost = process.env.FAILS_EXTERNAL_HOST
+    if (env.FAILS_EXTERNAL_HOST) {
+      this.exthost = env.FAILS_EXTERNAL_HOST
     } else {
       this.exthost = this.host
     }
 
-    if (process.env.FAILS_STATIC_WEBSERV_TYPE) {
-      this.statwebservertype = process.env.FAILS_STATIC_WEBSERV_TYPE
+    if (env.FAILS_STATIC_WEBSERV_TYPE) {
+      this.statwebservertype = env.FAILS_STATIC_WEBSERV_TYPE
     } else {
       this.statwebservertype = 'local'
     }
 
-    if (process.env.FAILS_STATIC_SAVE_TYPE) {
-      this.statsavetype = process.env.FAILS_STATIC_SAVE_TYPE
+    if (env.FAILS_STATIC_SAVE_TYPE) {
+      this.statsavetype = env.FAILS_STATIC_SAVE_TYPE
     } else {
       this.statsavetype = 'fs'
     }
 
     if (
-      process.env.FAILS_STATIC_WEBSERV_TYPE === 'openstackswift' ||
-      process.env.FAILS_STATIC_SAVE_TYPE === 'openstackswift'
+      env.FAILS_STATIC_WEBSERV_TYPE === 'openstackswift' ||
+      env.FAILS_STATIC_SAVE_TYPE === 'openstackswift'
     ) {
       this.swift = {}
       const sw = this.swift
-      sw.account = process.env.FAILS_SWIFT_ACCOUNT
-      sw.container = process.env.FAILS_SWIFT_CONTAINER
-      sw.key = process.env.FAILS_SWIFT_KEY
-      sw.baseurl = process.env.FAILS_SWIFT_BASEURL
-      sw.authbaseurl = process.env.FAILS_SWIFT_AUTH_BASEURL
-      sw.username = process.env.FAILS_SWIFT_USERNAME
-      sw.password = process.env.FAILS_SWIFT_PASSWORD
-      sw.domain = process.env.FAILS_SWIFT_DOMAIN
-      sw.project = process.env.FAILS_SWIFT_PROJECT
+      sw.account = env.FAILS_SWIFT_ACCOUNT
+      sw.container = env.FAILS_SWIFT_CONTAINER
+      sw.key = env.FAILS_SWIFT_KEY
+      sw.baseurl = env.FAILS_SWIFT_BASEURL
+      sw.authbaseurl = env.FAILS_SWIFT_AUTH_BASEURL
+      sw.username = env.FAILS_SWIFT_USERNAME
+      sw.password = env.FAILS_SWIFT_PASSWORD
+      sw.domain = env.FAILS_SWIFT_DOMAIN
+      sw.project = env.FAILS_SWIFT_PROJECT
     }
 
     if (
-      process.env.FAILS_STATIC_WEBSERV_TYPE === 's3' ||
-      process.env.FAILS_STATIC_SAVE_TYPE === 's3'
+      env.FAILS_STATIC_WEBSERV_TYPE === 's3' ||
+      env.FAILS_STATIC_SAVE_TYPE === 's3'
     ) {
       this.s3 = {}
       const s3 = this.s3
-      s3.AK = process.env.FAILS_S3_AK
-      s3.SK = process.env.FAILS_S3_SK
-      s3.region = process.env.FAILS_S3_REGION
-      s3.bucket = process.env.FAILS_S3_BUCKET
-      s3.host = process.env.FAILS_S3_HOST
-      s3.alturl = process.env.FAILS_S3_ALTURL
+      s3.AK = env.FAILS_S3_AK
+      s3.SK = env.FAILS_S3_SK
+      s3.region = env.FAILS_S3_REGION
+      s3.bucket = env.FAILS_S3_BUCKET
+      s3.host = env.FAILS_S3_HOST
+      s3.alturl = env.FAILS_S3_ALTURL
     }
 
-    if (process.env.FAILS_MONGO_URL) this.mongourl = process.env.FAILS_MONGO_URL
+    if (env.FAILS_MONGO_URL) this.mongourl = env.FAILS_MONGO_URL
     else this.mongourl = 'mongodb://localhost:27017'
 
-    if (process.env.FAILS_MONGO_DBNAME)
-      this.mongoname = process.env.FAILS_MONGO_DGNAME
+    if (env.FAILS_MONGO_DBNAME) this.mongoname = env.FAILS_MONGO_DGNAME
     else this.mongoname = 'fails'
 
-    if (process.env.FAILS_STATIC_SECRET)
-      this.staticsecret = process.env.FAILS_STATIC_SECRET
+    if (env.FAILS_STATIC_SECRET) this.staticsecret = env.FAILS_STATIC_SECRET
     else if (!this.react) throw new Error('Please specifiy FAILS_STATIC_SECRET')
 
-    if (process.env.FAILS_KEYS_SECRET)
-      this.keyssecret = process.env.FAILS_KEYS_SECRET
+    if (env.FAILS_KEYS_SECRET) this.keyssecret = env.FAILS_KEYS_SECRET
     else if (!this.react) throw new Error('Please specifiy FAILS_KEYS_SECRET')
 
     this.lms_list = {}
-    if (process.env.FAILS_LMS_LIST) {
-      const lmss = process.env.FAILS_LMS_LIST.split(' ')
+    if (env.FAILS_LMS_LIST) {
+      const lmss = env.FAILS_LMS_LIST.split(' ')
       for (let i = 0; i < lmss.length; i++) {
         const lms = lmss[i]
         const lmsarr = lms.split('|')
@@ -148,11 +150,11 @@ export class FailsConfig {
       }
     }
 
-    if (process.env.FAILS_LMS_COURSE_WHITELIST) {
-      this.courseidWhitelist = process.env.FAILS_LMS_COURSE_WHITELIST.split(' ')
+    if (env.FAILS_LMS_COURSE_WHITELIST) {
+      this.courseidWhitelist = env.FAILS_LMS_COURSE_WHITELIST.split(' ')
     }
 
-    if (process.env.FAILS_ONLY_LEARNERS === '1') {
+    if (env.FAILS_ONLY_LEARNERS === '1') {
       this.onlylearners = true
     } else {
       this.onlylearners = false
@@ -278,11 +280,11 @@ export class FailsConfig {
   getPort(type) {
     if (this.devmode && this.devmode.includes(type)) {
       const name = 'FAILS_DEV_' + type.toUpperCase() + '_PORT'
-      if (process.env[name]) {
-        return process.env[name]
+      if (this.env[name]) {
+        return this.env[name]
       }
-      if (process.env['REACT_APP_' + name]) {
-        return process.env['REACT_APP_' + name]
+      if (this.env['REACT_APP_' + name]) {
+        return this.env['REACT_APP_' + name]
       }
       if (this.devPorts()[type]) return this.devPorts()[type]
     }
