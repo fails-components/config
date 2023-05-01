@@ -22,8 +22,9 @@ export class FailsConfig {
     if (args && args.react) this.react = true
 
     let env
-    if (process?.env) env = process.env
-    else if (import.meta?.env) env = import.meta.env
+    if (typeof process !== 'undefined' && process.env) env = process.env
+    else if (typeof import.meta !== 'undefined' && import.meta?.env)
+      env = import.meta.env
     this.env = env
 
     if (env.NODE_ENV === 'development') {
