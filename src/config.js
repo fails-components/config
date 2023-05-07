@@ -23,8 +23,7 @@ export class FailsConfig {
 
     let env
     if (typeof process !== 'undefined' && process.env) env = process.env
-    else if (typeof import.meta !== 'undefined' && import.meta?.env)
-      env = import.meta.env
+    else env = import.meta.env
     this.env = env
 
     if (env.NODE_ENV === 'development') {
