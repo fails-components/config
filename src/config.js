@@ -24,44 +24,44 @@ export class FailsConfig {
     let env
     if (typeof process !== 'undefined' && process.env) {
       env = process.env
-      if (!env) {
-        // webpack compatibility mode, to be removed later
-        env = {
-          NODE_ENV: process.env.NODE_ENV,
-          FAILS_LOCAL: process.env.FAILS_LOCAL,
-          REDIS_HOST: process.env.REDIS_HOST,
-          REDIS_PORT: process.env.REDIS_PORT,
-          REDIS_PASS: process.env.REDIS_PASS,
-          REACT_APP_FAILS_LOCAL: process.env.REACT_APP_FAILS_LOCAL,
-          FAILS_DEV_IPHOST: process.env.FAILS_DEV_IPHOST,
-          FAILS_EXTERNAL_HOST: process.env.FAILS_EXTERNAL_HOST,
-          FAILS_STATIC_WEBSERV_TYPE: process.env.FAILS_STATIC_WEBSERV_TYPE,
-          FAILS_STATIC_SAVE_TYPE: process.env.FAILS_STATIC_SAVE_TYPE,
-          FAILS_SWIFT_ACCOUNT: process.env.FAILS_SWIFT_ACCOUNT,
-          FAILS_SWIFT_CONTAINER: process.env.FAILS_SWIFT_CONTAINER,
-          FAILS_SWIFT_KEY: process.env.FAILS_SWIFT_KEY,
-          FAILS_SWIFT_BASEURL: process.env.FAILS_SWIFT_BASEURL,
-          FAILS_SWIFT_AUTH_BASEURL: process.env.FAILS_SWIFT_AUTH_BASEURL,
-          FAILS_SWIFT_USERNAME: process.env.FAILS_SWIFT_USERNAME,
-          FAILS_SWIFT_PASSWORD: process.env.FAILS_SWIFT_PASSWORD,
-          FAILS_SWIFT_DOMAIN: process.env.FAILS_SWIFT_DOMAIN,
-          FAILS_SWIFT_PROJECT: process.env.FAILS_SWIFT_PROJECT,
-          FAILS_S3_AK: process.env.FAILS_S3_AK,
-          FAILS_S3_SK: process.env.FAILS_S3_SK,
-          FAILS_S3_REGION: process.env.FAILS_S3_REGION,
-          FAILS_S3_BUCKET: process.env.FAILS_S3_BUCKET,
-          FAILS_S3_HOST: process.env.FAILS_S3_HOST,
-          FAILS_S3_ALTURL: process.env.FAILS_S3_ALTURL,
-          FAILS_MONGO_URL: process.env.FAILS_MONGO_URL,
-          FAILS_MONGO_DBNAME: process.env.FAILS_MONGO_DBNAME,
-          FAILS_STATIC_SECRET: process.env.FAILS_STATIC_SECRET,
-          FAILS_KEYS_SECRET: process.env.FAILS_KEYS_SECRET,
-          FAILS_LMS_LIST: process.env.FAILS_LMS_LIST,
-          FAILS_LMS_COURSE_WHITELIST: process.env.FAILS_LMS_COURSE_WHITELIST,
-          FAILS_ONLY_LEARNERS: process.env.FAILS_ONLY_LEARNERS
-        }
-      }
     } else env = import.meta.env
+    if (!env) {
+      // webpack compatibility mode, to be removed later
+      env = {
+        NODE_ENV: process.env.NODE_ENV,
+        FAILS_LOCAL: process.env.FAILS_LOCAL,
+        REDIS_HOST: process.env.REDIS_HOST,
+        REDIS_PORT: process.env.REDIS_PORT,
+        REDIS_PASS: process.env.REDIS_PASS,
+        REACT_APP_FAILS_LOCAL: process.env.REACT_APP_FAILS_LOCAL,
+        FAILS_DEV_IPHOST: process.env.FAILS_DEV_IPHOST,
+        FAILS_EXTERNAL_HOST: process.env.FAILS_EXTERNAL_HOST,
+        FAILS_STATIC_WEBSERV_TYPE: process.env.FAILS_STATIC_WEBSERV_TYPE,
+        FAILS_STATIC_SAVE_TYPE: process.env.FAILS_STATIC_SAVE_TYPE,
+        FAILS_SWIFT_ACCOUNT: process.env.FAILS_SWIFT_ACCOUNT,
+        FAILS_SWIFT_CONTAINER: process.env.FAILS_SWIFT_CONTAINER,
+        FAILS_SWIFT_KEY: process.env.FAILS_SWIFT_KEY,
+        FAILS_SWIFT_BASEURL: process.env.FAILS_SWIFT_BASEURL,
+        FAILS_SWIFT_AUTH_BASEURL: process.env.FAILS_SWIFT_AUTH_BASEURL,
+        FAILS_SWIFT_USERNAME: process.env.FAILS_SWIFT_USERNAME,
+        FAILS_SWIFT_PASSWORD: process.env.FAILS_SWIFT_PASSWORD,
+        FAILS_SWIFT_DOMAIN: process.env.FAILS_SWIFT_DOMAIN,
+        FAILS_SWIFT_PROJECT: process.env.FAILS_SWIFT_PROJECT,
+        FAILS_S3_AK: process.env.FAILS_S3_AK,
+        FAILS_S3_SK: process.env.FAILS_S3_SK,
+        FAILS_S3_REGION: process.env.FAILS_S3_REGION,
+        FAILS_S3_BUCKET: process.env.FAILS_S3_BUCKET,
+        FAILS_S3_HOST: process.env.FAILS_S3_HOST,
+        FAILS_S3_ALTURL: process.env.FAILS_S3_ALTURL,
+        FAILS_MONGO_URL: process.env.FAILS_MONGO_URL,
+        FAILS_MONGO_DBNAME: process.env.FAILS_MONGO_DBNAME,
+        FAILS_STATIC_SECRET: process.env.FAILS_STATIC_SECRET,
+        FAILS_KEYS_SECRET: process.env.FAILS_KEYS_SECRET,
+        FAILS_LMS_LIST: process.env.FAILS_LMS_LIST,
+        FAILS_LMS_COURSE_WHITELIST: process.env.FAILS_LMS_COURSE_WHITELIST,
+        FAILS_ONLY_LEARNERS: process.env.FAILS_ONLY_LEARNERS
+      }
+    }
     this.env = env
 
     if (env.NODE_ENV === 'development') {
