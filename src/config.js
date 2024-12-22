@@ -233,6 +233,7 @@ export class FailsConfig {
       notepad: 9090,
       screen: 9090,
       lti: 9091,
+      demo: 9094,
       notes: 9093,
       data: 9092,
       avsdispatcher: 9093
@@ -276,10 +277,15 @@ export class FailsConfig {
       screen: '',
       notes: '',
       lti: 'lti',
+      demo: 'demo',
       data: '',
       avsdispatcher: 'avs'
     }
-    if (this.devmode && !(type === 'lti' || type === 'avsdispatcher')) return ''
+    if (
+      this.devmode &&
+      !(type === 'lti' || type === 'demo' || type === 'avsdispatcher')
+    )
+      return ''
 
     let toret
     if (paths[type]) {
