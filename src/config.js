@@ -200,9 +200,9 @@ export class FailsConfig {
     }
 
     if (env.FAILS_ADDL_ADMINS) {
-      this.addlAdmins = env.FAILS_ADDL_ADMINS.split(' ')
+      this.addladmins = env.FAILS_ADDL_ADMINS.split(' ')
     } else {
-      this.addlAdmins = []
+      this.addladmins = []
     }
   }
 
@@ -211,7 +211,7 @@ export class FailsConfig {
   }
 
   addlAdmins() {
-    return this.addlAdmins
+    return this.addladmins
   }
 
   courseWhitelist() {
