@@ -59,7 +59,8 @@ export class FailsConfig {
         FAILS_KEYS_SECRET: process.env.FAILS_KEYS_SECRET,
         FAILS_LMS_LIST: process.env.FAILS_LMS_LIST,
         FAILS_LMS_COURSE_WHITELIST: process.env.FAILS_LMS_COURSE_WHITELIST,
-        FAILS_ONLY_LEARNERS: process.env.FAILS_ONLY_LEARNERS
+        FAILS_ONLY_LEARNERS: process.env.FAILS_ONLY_LEARNERS,
+        FAILS_ADDL_ADMINS: process.env.FAILS_ADDL_ADMINS
       }
     }
     this.env = env
@@ -197,10 +198,20 @@ export class FailsConfig {
     } else {
       this.onlylearners = false
     }
+
+    if (env.FAILS_ADDL_ADMINS) {
+      this.addlAdmins = env.FAILS_ADDL_ADMINS.split(' ')
+    } else {
+      this.addlAdmins = []
+    }
   }
 
   onlyLearners() {
     return this.onlylearners
+  }
+
+  addlAdmins() {
+    return this.addlAdmins
   }
 
   courseWhitelist() {
