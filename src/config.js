@@ -232,7 +232,6 @@ export class FailsConfig {
           process.env.FAILS_ADMIN_EMAIL_ROOT_ADDRESSES.split(',')
       }
       this.senderaddress = process.env.FAILS_ADMIN_EMAIL_SENDER_ADDRESS
-
     }
   }
 
