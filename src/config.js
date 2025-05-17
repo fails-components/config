@@ -217,7 +217,7 @@ export class FailsConfig {
       this.addladmins = []
     }
 
-    if (env.FAILS_ADMIN_EMAIL_SERVER) {
+    if (env.FAILS_ADMIN_EMAIL_SERVER && process.env.FAILS_ADMIN_EMAIL_SENDER_ADDRESS) {
       this.nodemailerconfig = {
         host: env.FAILS_ADMIN_EMAIL_SERVER,
         port: env.FAILS_ADMIN_EMAIL_SERVER_PORT,
@@ -231,6 +231,8 @@ export class FailsConfig {
         this.rootemails =
           process.env.FAILS_ADMIN_EMAIL_ROOT_ADDRESSES.split(',')
       }
+      this.senderaddress = process.env.FAILS_ADMIN_EMAIL_SENDER_ADDRESS
+
     }
   }
 
@@ -248,6 +250,10 @@ export class FailsConfig {
 
   rootEmails() {
     return this.rootemails
+  }
+
+  senderAddress() {
+    return this.senderaddress
   }
 
   courseWhitelist() {
