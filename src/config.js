@@ -228,7 +228,7 @@ export class FailsConfig {
         }
       }
       if (process.env.FAILS_ADMIN_EMAILS_ROOT_ADDRESSES) {
-        this.rootemails = process.env.FAILS_ADMIN_EMAILS_ROOT_ADDRESSES.split(,)
+        this.rootemails = process.env.FAILS_ADMIN_EMAILS_ROOT_ADDRESSES.split(',')
       }
     }
   }
