@@ -217,7 +217,10 @@ export class FailsConfig {
       this.addladmins = []
     }
 
-    if (env.FAILS_ADMIN_EMAIL_SERVER && process.env.FAILS_ADMIN_EMAIL_SENDER_ADDRESS) {
+    if (
+      env.FAILS_ADMIN_EMAIL_SERVER &&
+      process.env.FAILS_ADMIN_EMAIL_SENDER_ADDRESS
+    ) {
       this.nodemailerconfig = {
         host: env.FAILS_ADMIN_EMAIL_SERVER,
         port: env.FAILS_ADMIN_EMAIL_SERVER_PORT,
