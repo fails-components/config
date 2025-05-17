@@ -60,7 +60,17 @@ export class FailsConfig {
         FAILS_LMS_LIST: process.env.FAILS_LMS_LIST,
         FAILS_LMS_COURSE_WHITELIST: process.env.FAILS_LMS_COURSE_WHITELIST,
         FAILS_ONLY_LEARNERS: process.env.FAILS_ONLY_LEARNERS,
-        FAILS_ADDL_ADMINS: process.env.FAILS_ADDL_ADMINS
+        FAILS_ADDL_ADMINS: process.env.FAILS_ADDL_ADMINS,
+        FAILS_ADMIN_EMAIL_SERVER: process.env.FAILS_ADMIN_EMAIL_SERVER,
+        FAILS_ADMIN_EMAIL_SERVER_PORT:
+          process.env.FAILS_ADMIN_EMAIL_SERVER_PORT,
+        FAILS_ADMIN_EMAIL_SENDER_ADDRESS:
+          process.env.FAILS_ADMIN_EMAIL_SENDER_ADDRESS,
+        FAILS_ADMIN_EMAIL_ACCOUNT_NAME:
+          process.env.FAILS_ADMIN_EMAIL_ACCOUNT_NAME,
+        FAILS_ADMIN_EMAIL_ACCOUNT_PASSWORD:
+          process.env.FAILS_ADMIN_EMAIL_ACCOUNT_PASSWORD,
+        FAILS_ADMIN_EMAIL_SECURE: process.env.FAILS_ADMIN_EMAIL_SECURE
       }
     }
     this.env = env
@@ -204,6 +214,18 @@ export class FailsConfig {
     } else {
       this.addladmins = []
     }
+
+    if (env.FAILS_ADMIN_EMAIL_SERVER) {
+      this.nodemailerconfig = {
+        host: env.FAILS_ADMIN_EMAIL_SERVER,
+        port: env.FAILS_ADMIN_EMAIL_SERVER_PORT,
+        secure: env.secure === '1',
+        auth: {
+          user: env.FAILS_ADMIN_EMAIL_ACCOUNT_NAME,
+          pass: env.FAILS_ADMIN_EMAIL_ACCOUNT_PASSWORD
+        }
+      }
+    }
   }
 
   onlyLearners() {
@@ -212,6 +234,10 @@ export class FailsConfig {
 
   addlAdmins() {
     return this.addladmins
+  }
+
+  nodemailerConfig() {
+    return this.nodemailerconfig
   }
 
   courseWhitelist() {
