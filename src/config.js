@@ -66,6 +66,8 @@ export class FailsConfig {
           process.env.FAILS_ADMIN_EMAIL_SERVER_PORT,
         FAILS_ADMIN_EMAIL_SENDER_ADDRESS:
           process.env.FAILS_ADMIN_EMAIL_SENDER_ADDRESS,
+        FAILS_ADMIN_EMAILS_ROOT_ADDRESSES:
+          process.env.FAILS_ADMIN_EMAILS_ROOT_ADDRESSES,
         FAILS_ADMIN_EMAIL_ACCOUNT_NAME:
           process.env.FAILS_ADMIN_EMAIL_ACCOUNT_NAME,
         FAILS_ADMIN_EMAIL_ACCOUNT_PASSWORD:
@@ -225,6 +227,9 @@ export class FailsConfig {
           pass: env.FAILS_ADMIN_EMAIL_ACCOUNT_PASSWORD
         }
       }
+      if (process.env.FAILS_ADMIN_EMAILS_ROOT_ADDRESSES) {
+        this.rootemails = process.env.FAILS_ADMIN_EMAILS_ROOT_ADDRESSES.split(,)
+      }
     }
   }
 
@@ -238,6 +243,10 @@ export class FailsConfig {
 
   nodemailerConfig() {
     return this.nodemailerconfig
+  }
+
+  rootEmails() {
+    return this.rootemails
   }
 
   courseWhitelist() {
